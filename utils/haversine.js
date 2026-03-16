@@ -18,4 +18,5 @@ const haversine = (lat1, lon1, lat2, lon2) => {
   return R * c; // Distance in kilometers
 };
 
-module.exports = haversine;
+const calculateDistance = haversine;
+export { calculateDistance };
