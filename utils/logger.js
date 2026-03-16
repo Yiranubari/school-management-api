@@ -65,7 +65,23 @@ class Logger {
   }
 
   error(message, error) {
-    this.logger.error(message, { error, caller: this.getCallerInfo() });
+    let errorDetails;
+
+    if (error instanceof Error) {
+      errorDetails = {
+        message: error.message,
+        stack: error.stack,
+      };
+    } else if (typeof error === "string") {
+      errorDetails = { message: error };
+    } else {
+      errorDetails = { message: JSON.stringify(error) };
+    }
+
+    this.logger.error(message, {
+      ...errorDetails,
+      caller: this.getCallerInfo(),
+    });
   }
 
   warn(message, meta) {
