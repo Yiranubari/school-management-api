@@ -40,9 +40,8 @@ school-management-api/
 ├── validators/
 │   └── school.validator.js      ← Joi validation schemas
 ├── app.js                       ← Entry point
-└── .env                         ← Environment variables
-├── .env.example                 ← Environment variables (placeholder)
-
+├── .env                         ← Environment variables
+└── .env.example                 ← Environment variables (placeholder)
 ```
 
 ## Getting Started
@@ -159,7 +158,25 @@ npm run dev
       "latitude": 9.0765,
       "longitude": 7.3986,
       "created_at": "2026-03-16T13:47:23.000Z",
-      "distance": 0.000013
+      "distance": 0.0
+    },
+    {
+      "id": 1,
+      "name": "Greenwood High School",
+      "address": "123 Main Street, Lagos",
+      "latitude": 6.5244,
+      "longitude": 3.3792,
+      "created_at": "2026-03-16T13:44:08.000Z",
+      "distance": 525.898
+    },
+    {
+      "id": 2,
+      "name": "Sunrise Academy",
+      "address": "45 Victoria Island, Lagos",
+      "latitude": 6.4281,
+      "longitude": 3.4219,
+      "created_at": "2026-03-16T13:45:22.000Z",
+      "distance": 527.882
     }
   ]
 }
