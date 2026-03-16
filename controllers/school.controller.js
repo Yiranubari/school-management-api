@@ -14,7 +14,9 @@ export class SchoolController {
       });
 
       if (error) {
-        throw new ValidationException(error.details[0].message);
+        throw new ValidationException(
+          error.details[0].message.replace(/\"/g, ""),
+        );
       }
 
       const schools = await schoolService.listSchools(
@@ -37,7 +39,9 @@ export class SchoolController {
       const { error, value } = SchoolValidator.validateAddSchool(req.body);
 
       if (error) {
-        throw new ValidationException(error.details[0].message);
+        throw new ValidationException(
+          error.details[0].message.replace(/\"/g, ""),
+        );
       }
 
       const schoolId = await schoolService.addSchool(value);
