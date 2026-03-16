@@ -2,6 +2,15 @@
 
 A REST API built with Node.js and Express.js for managing school data. The API allows you to add new schools and retrieve a list of schools sorted by proximity to a user-specified location.
 
+## Features
+
+- Add a new school
+- Retrieve schools sorted by distance
+- Input validation using Joi
+- Error handling with custom exceptions
+- Structured logging with Winston
+- RESTful API design
+
 ## Tech Stack
 
 - **Runtime:** Node.js
@@ -48,7 +57,7 @@ school-management-api/
 1. Clone the repository
 
 ```bash
-git clone github.com/Yiranubari/school-management-api
+git clone https://github.com/Yiranubari/school-management-api.git
 cd school-management-api
 ```
 
@@ -148,3 +157,7 @@ Base URL: `https://school-management-api-53lp.onrender.com`
 ## Postman Collection
 
 [View Documentation](https://documenter.getpostman.com/view/53241440/2sBXigNZXE)
+
+## Author
+
+GitHub: https://github.com/Yiranubari
