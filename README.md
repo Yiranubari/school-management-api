@@ -46,7 +46,7 @@ school-management-api/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/Yiranubari/school-management-api
+git clone github.com/Yiranubari/school-management-api
 cd school-management-api
 ```
 
