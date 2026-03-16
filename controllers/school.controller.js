@@ -1,69 +1,68 @@
-import schoolService from "../services/school.service.js";
-import { SchoolValidator } from "../validators/school.validator.js";
+import schoolService from "../services/school.service";
+import { SchoolValidator } from "../validators/school.validator";
+import {
+  ValidationException,
+  InternalException,
+} from "../exceptions/app.exception.js";
 import logger from "../utils/logger.js";
 
-export class SchoolController {
-  async getSchools(req, res) {
-    try {
-      const { latitude, longitude } = req.query;
+export const getSchools = async (req, res, next) => {
+  try {
+    const { latitude, longitude } = req.query;
 
-      const { error } = SchoolValidator.validateListSchools({
-        latitude: Number(latitude),
-        longitude: Number(longitude),
-      });
+    const { error } = SchoolValidator.validateListSchools({
+      latitude: Number(latitude),
+      longitude: Number(longitude),
+    });
 
-      if (error) {
-        return res.status(400).json({
-          success: false,
-          message: error.details[0].message,
-        });
-      }
-
-      const schools = await schoolService.listSchools(
-        Number(latitude),
-        Number(longitude),
-      );
-
-      return res.status(200).json({
-        success: true,
-        data: schools,
-      });
-    } catch (err) {
-      logger.error("Error Message", err);
-      return res.status(500).json({
-        success: false,
-        message: "Internal server error",
-      });
+    if (error) {
+      throw new ValidationException(error.details[0].message);
     }
+
+    const schools = await schoolService.listSchools(
+      Number(latitude),
+      Number(longitude),
+    );
+
+    return res.status(200).json({
+      success: true,
+      data: schools,
+    });
+  } catch (err) {
+    logger.error("Error fetching schools", err);
+    next(err);
   }
+};
 
-  async addSchool(req, res) {
-    try {
-      const { error, value } = SchoolValidator.validateAddSchool(req.body);
+export const addSchool = async (req, res, next) => {
+  try {
+    const { name, address, latitude, longitude } = req.body;
 
-      if (error) {
-        return res.status(400).json({
-          success: false,
-          message: error.details[0].message,
-        });
-      }
+    const { error } = SchoolValidator.validateAddSchool({
+      name,
+      address,
+      latitude,
+      longitude,
+    });
 
-      const schoolId = await schoolService.addSchool(value);
-
-      return res.status(201).json({
-        success: true,
-        data: { id: schoolId },
-      });
-    } catch (error) {
-      logger.error("Error adding school", error);
-      console.error("Full error:", error.message, error.stack);
-      return res.status(500).json({
-        success: false,
-        message: "Internal server error",
-      });
+    if (error) {
+      throw new ValidationException(error.details[0].message);
     }
-  }
-}
 
-const schoolController = new SchoolController();
-export default schoolController;
+    const schoolId = await schoolService.addSchool({
+      name,
+      address,
+      latitude,
+      longitude,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "School added successfully",
+      data: { id: schoolId },
+    });
+  } catch (err) {
+    logger.error("Error adding school", err);
+    next(err);
+  }
+};

@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import schoolRouter from "./routes/school.routes.js";
+import { AppException } from "./exceptions/app.exception.js";
+import logger from "./utils/logger.js";
 
 dotenv.config();
 
@@ -13,6 +15,24 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", schoolRouter);
+
+// Global error handling middleware
+app.use((err, req, res, next) => {
+  logger.error("Unhandled error", err);
+
+  if (err instanceof AppException) {
+    return res.status(err.statusCode).json({
+      success: false,
+      message: err.message,
+    });
+  }
+
+  // Handle unexpected errors
+  return res.status(500).json({
+    success: false,
+    message: "Internal server error",
+  });
+});
 
 const PORT = process.env.PORT || 3000;
 
