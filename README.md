@@ -100,6 +100,21 @@ npm run dev
 
 ## API Endpoints
 
+### Health Check
+
+- **Method:** GET
+- **URL:** `/health`
+- **Success Response:** `200 OK`
+
+```json
+{
+  "status": "ok",
+  "uptime": 123.45,
+  "timestamp": "2026-03-16T15:30:00.000Z",
+  "environment": "development"
+}
+```
+
 ### Add School
 
 - **Method:** POST
