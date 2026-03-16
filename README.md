@@ -41,7 +41,7 @@ school-management-api/
 │   └── school.validator.js      ← Joi validation schemas
 ├── app.js                       ← Entry point
 └── .env                         ← Environment variables
-└── .env.example                 ← Environment variables (placeholder)
+├── .env.example                 ← Environment variables (placeholder)
 
 ```
 
