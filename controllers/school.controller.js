@@ -56,6 +56,7 @@ export class SchoolController {
       });
     } catch (error) {
       logger.error("Error adding school", error);
+      console.error("Full error:", error.message, error.stack);
       return res.status(500).json({
         success: false,
         message: "Internal server error",
