@@ -1,5 +1,6 @@
 import schoolService from "../services/school.service.js";
 import { SchoolValidator } from "../validators/school.validator.js";
+import logger from "../utils/logger.js";
 
 export class SchoolController {
   async getSchools(req, res) {
@@ -28,6 +29,7 @@ export class SchoolController {
         data: schools,
       });
     } catch (err) {
+      logger.error("Error Message", err);
       return res.status(500).json({
         success: false,
         message: "Internal server error",
@@ -53,6 +55,7 @@ export class SchoolController {
         data: { id: schoolId },
       });
     } catch (error) {
+      logger.error("Error adding school", error);
       return res.status(500).json({
         success: false,
         message: "Internal server error",
