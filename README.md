@@ -141,6 +141,24 @@ npm run dev
 }
 ```
 
+- **Error Response — Missing Fields:** `400 Bad Request`
+
+```json
+{
+  "success": false,
+  "message": "name is required"
+}
+```
+
+- **Error Response — Invalid Latitude/Longitude:** `400 Bad Request`
+
+```json
+{
+  "success": false,
+  "message": "latitude must be less than or equal to 90"
+}
+```
+
 ### List Schools
 
 - **Method:** GET
@@ -179,6 +197,24 @@ npm run dev
       "distance": 527.882
     }
   ]
+}
+```
+
+- **Error Response — Missing Query Params:** `400 Bad Request`
+
+```json
+{
+  "success": false,
+  "message": "latitude is required"
+}
+```
+
+- **Error Response — No Schools Found:** `404 Not Found`
+
+```json
+{
+  "success": false,
+  "message": "No schools found"
 }
 ```
 
