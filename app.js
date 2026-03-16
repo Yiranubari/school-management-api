@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import schoolRouter from "./routes/school.routes.js";
+import healthRouter from "./routes/health.routes.js";
 import { AppException } from "./exceptions/app.exception.js";
 import logger from "./utils/logger.js";
 
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
   res.json({ message: "School Management API is running" });
 });
 
+app.use("/", healthRouter);
 app.use("/", schoolRouter);
 
 // Global error handling middleware
