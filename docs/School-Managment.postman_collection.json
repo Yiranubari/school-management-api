@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "50c29f9d-18bb-417f-8db1-a5bee608896e",
+		"name": "School-Managment",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "53241440",
+		"_collection_link": "https://yiranubari-8883042.postman.co/workspace/Yiranubari-Maamaa's-Workspace~8827db46-d35b-44a8-8ec0-d0018b379b0e/collection/53241440-50c29f9d-18bb-417f-8db1-a5bee608896e?action=share&source=collection_link&creator=53241440"
+	},
+	"item": [
+		{
+			"name": "addSchool",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Royal Crown School\",\n  \"address\": \"78 Abuja Municipal, FCT\",\n  \"latitude\": 9.0765,\n  \"longitude\": 7.3986\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://school-management-api-53lp.onrender.com/addSchool",
+					"protocol": "https",
+					"host": [
+						"school-management-api-53lp",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"addSchool"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "listSchool",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://school-management-api-53lp.onrender.com/listSchools?latitude=9.0765&longitude=7.3986",
+					"protocol": "https",
+					"host": [
+						"school-management-api-53lp",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"listSchools"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "9.0765"
+						},
+						{
+							"key": "longitude",
+							"value": "7.3986"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		}
+	]
+}
