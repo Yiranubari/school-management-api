@@ -15,7 +15,7 @@ const haversine = (lat1, lon1, lat2, lon2) => {
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  return R * c; // Distance in kilometers
+  return Number((R * c).toFixed(3)); // Distance in kilometers
 };
 
 const calculateDistance = haversine;
